@@ -122,7 +122,3 @@ const IntroWithMoreStyle = styled(Intro)`
 ## License
 
 MIT @ Homeroom
-
-```
-
-```
