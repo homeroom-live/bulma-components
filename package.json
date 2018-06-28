@@ -1,0 +1,34 @@
+{
+  "name": "bulma-components",
+  "description": "React library for Bulma.",
+  "version": "0.0.0-development",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "repository": "https://github.com/homeroom-live/bulma-components.git",
+  "author": "Matic Zavadlal <matic.zavadlal@gmail.com>",
+  "release": {
+    "branch": "master"
+  },
+  "scripts": {
+    "prepublish": "npm run test",
+    "build": "rimraf dist && tsc -d",
+    "lint": "tslint --project tsconfig.json {src}/**/*.ts",
+    "test": "npm run lint && npm run build && ava --verbose",
+    "semantic-release": "semantic-release"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "prettier": "^1.13.6",
+    "prettier-check": "^2.0.0",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "tslint-config-standard": "^7.1.0",
+    "typescript": "^2.9.2",
+    "semantic-release": "^15.6.0"
+  },
+  "peerDependencies": {
+    "bulma": "^0.7.1"
+  },
+  "license": "MIT"
+}
