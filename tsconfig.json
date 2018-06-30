@@ -3,9 +3,11 @@
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
+    "jsx": "react",
     "rootDir": "src",
     "outDir": "dist",
     "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
     "lib": ["dom", "es2017", "esnext.asynciterable"]
   },
   "exclude": ["node_modules", "examples"]

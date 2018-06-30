@@ -2,12 +2,15 @@ import { isValidElementType } from 'react-is'
 
 interface ConstructorOptions {
   [key: string]: any
-  attrs?: { [key: string]: any}
+  attrs?: { [key: string]: any }
 }
 
 type TemplateLiteral = any
 
-declare type TemplateFunction = (...args: (string | TemplateLiteral)[]) => any
+interface TemplateFunction {
+  (): (...args: (string | TemplateLiteral)[]) => any
+  attrs?: (...options: any[]) => TemplateFunction
+}
 
 export default css => {
   const constructWithOptions = (
@@ -26,9 +29,14 @@ export default css => {
     const templateFunction: TemplateFunction = (...args) =>
       componentConstructor(tag, options, css(...args))
 
-    templateFunction.attrs = attrs => constructWithOptions(componentConstructor, tag {
-      ...options,
-      attrs: { ...(options.attrs || {}), ...attrs }
-    })
+    templateFunction.attrs = attrs =>
+      constructWithOptions(componentConstructor, tag, {
+        ...options,
+        attrs: { ...(options.attrs || {}), ...attrs },
+      })
+
+    return templateFunction
   }
+
+  return constructWithOptions
 }
