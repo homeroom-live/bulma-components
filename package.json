@@ -29,7 +29,7 @@
     "prettier": "1.13.7",
     "prettier-check": "2.0.0",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react-dom": "16.4.1",
     "rimraf": "2.6.2",
     "semantic-release": "15.6.0",
     "tslint": "5.10.0",
