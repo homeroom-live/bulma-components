@@ -14,6 +14,10 @@ export default class StyleSheet {
     return master || (master = new StyleSheet())
   }
 
+  injectTags(tags: string) {
+    return
+  }
+
   clone(): StyleSheet {
     return
   }

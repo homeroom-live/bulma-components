@@ -1,3 +1,4 @@
+import { Component } from 'react'
 import { isValidElementType } from 'react-is'
 
 interface ConstructorOptions {
@@ -5,32 +6,44 @@ interface ConstructorOptions {
   attrs?: { [key: string]: any }
 }
 
-type TemplateLiteral = any
+type ComponentConstructor = (
+  component: typeof Component,
+  options: ConstructorOptions,
+  tags: string[],
+) => Component
 
 interface TemplateFunction {
-  (): (...args: (string | TemplateLiteral)[]) => any
-  attrs?: (...options: any[]) => TemplateFunction
+  (style: Style, ...tags: TemplateTag[]): Component<any, any, any>
+  attrs?: (...attrs: any[]) => TemplateFunction
 }
 
-export default css => {
+type CssConstructor = (style: Style, ...tags: TemplateTag[]) => BulmaTag[]
+
+export default (css: CssConstructor) => {
   const constructWithOptions = (
-    componentConstructor,
-    tag,
+    componentConstructor: ComponentConstructor,
+    composedComponent: typeof Component,
     options: ConstructorOptions = {},
-  ) => {
-    if (!isValidElementType(tag)) {
+  ): TemplateFunction => {
+    if (!isValidElementType(composedComponent)) {
       throw new Error(
         process.env.NODE_ENV !== 'production'
-          ? `Cannot create styled-component for component: ${String(tag)}`
+          ? `Cannot create bulma-component for component: ${String(
+              composedComponent,
+            )}`
           : '',
       )
     }
 
-    const templateFunction: TemplateFunction = (...args) =>
-      componentConstructor(tag, options, css(...args))
+    const templateFunction: TemplateFunction = (
+      style: Style,
+      ...tags: TemplateTag[]
+    ) =>
+      // Here should go the derived tags from b``
+      componentConstructor(composedComponent, options, css(style, ...tags))
 
     templateFunction.attrs = attrs =>
-      constructWithOptions(componentConstructor, tag, {
+      constructWithOptions(componentConstructor, composedComponent, {
         ...options,
         attrs: { ...(options.attrs || {}), ...attrs },
       })
