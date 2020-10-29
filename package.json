@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "css-to-object": "^1.1.0",
-    "react-is": "^16.4.1"
+    "react-is": "^17.0.0"
   },
   "devDependencies": {
     "@types/node": "^10.5.1",
@@ -28,8 +28,8 @@
     "bulma": "0.7.1",
     "prettier": "1.13.7",
     "prettier-check": "2.0.0",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "rimraf": "2.6.2",
     "semantic-release": "15.6.0",
     "tslint": "5.10.0",
